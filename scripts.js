@@ -46,6 +46,26 @@ function fetchQuotesMakeSlides() {
     })
 };
 
+async function getVids(apiURL) {
+    const response = await fetch(apiURL);
+    // this makes it wait until promise is returned before continuing
+    if (!response.ok) {
+        console.log("I think your api is broken or something, bummer");
+    }
+    // since fetch doesn't return an error on 404 etc, we check using 'ok'
+    const gimmeJSON = await response.json();
+    // now we have a JSON object which is an array of the movies
+    gimmeJSON.forEach(item => {
+        console.log(item.title)
+        makeVidCards(item);
+    });
+}
+
+function makeVidCards(item) {
+    
+}
+
 $(document).ready(function () {
     fetchQuotesMakeSlides();
+    getVids('https://smileschool-api.hbtn.info/popular-tutorials');
 });
