@@ -916,23 +916,3 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
-
-
-/** wacky slider attempts **/
-/* Make the carousel display horizontally like a flexbox */
-#carouselExampleControls2 .carousel-inner {
-  display: flex;
-  overflow: hidden;
-}
-
-/* Set each carousel item to be a fraction of the total width (e.g., 25% for 4 items) */
-#carouselExampleControls2 .carousel-item {
-  flex: 0 0 25%; /* Adjust this value based on how many items you want to be visible */
-  max-width: 25%; /* Corresponding max-width */
-}
-
-/* Ensure the cards within each carousel item take up the full space */
-#carouselExampleControls2 .carousel-item .card {
-  width: 100%;
-}
