@@ -48,24 +48,4 @@ function fetchQuotesMakeSlides() {
 
 $(document).ready(function () {
     fetchQuotesMakeSlides();
-    // Function to get the width of a single card (including margins) within the specific carousel
-    function getCardWidth() {
-        return $('#carouselExampleControls2 .carousel-item').first().outerWidth(true);
-    }
-
-    $('#carouselExampleControls2 .carousel-control-prev').click(function(e) {
-        e.preventDefault();
-        let cardWidth = getCardWidth();
-        $('#carouselExampleControls2 .carousel-inner').animate({
-            scrollLeft: '-=' + cardWidth
-        }, 300);
-    });
-
-    $('#carouselExampleControls2 .carousel-control-next').click(function(e) {
-        e.preventDefault();
-        let cardWidth = getCardWidth();
-        $('#carouselExampleControls2 .carousel-inner').animate({
-            scrollLeft: '+=' + cardWidth
-        }, 300);
-    });
 });
