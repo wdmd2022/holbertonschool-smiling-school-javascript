@@ -300,9 +300,9 @@
   width: 16rem;
 }
 
-.popular .card {
+/* .popular .card {
   padding-bottom: 87px;
-}
+} */
 
 .section .card-img-overlay {
   /* top: 25px; */
@@ -316,7 +316,27 @@
 
 .section .card-text {
   font-size: 14px;
-  line-height: 24px;
+  line-height: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .section .card-title {
+    font-size: 14px;
+  }
+  .section .card-text {
+    font-size: 12px;
+  }
+  .section h6 {
+    font-size: 10px;
+  }
+  .section .info {
+    font-size: 12px;
+  }
+  .section .card {
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+  
 }
 
 .popular .carousel-control-prev,
@@ -360,7 +380,7 @@
   }
 
   .section .card {
-    width: 16rem;
+    width: 24rem;
   }
   .section .card-img-overlay img {
     width: 30%;
@@ -915,4 +935,99 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/** rating stars **/
+.rating img {
+  display: inline-block;
+}
+
+
+
+/** let's talk about SLICK CAROUSELS **/
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  color: grey;
+}
+
+
+.slick-prev {
+  background: url('./images/arrow_black_left.png') no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  margin-left: -3rem;
+}
+
+.slick-next {
+  background: url('./images/arrow_black_right.png') no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  margin-right: -3rem;
+}
+
+.slick-prev {
+  left: 0;
+  font-size: 0;
+  width: 29px;
+  height: 62px;
+  background-color:rgba(0, 0, 0, 0.0);
+}
+
+.slick-next {
+  right: 0;
+  font-size: 0;
+  width: 29px;
+  height: 62px;
+  background-color:rgba(0, 0, 0, 0.0);
+}
+
+.slick-track
+{
+    display: flex !important;
+}
+
+.slick-slide
+{
+    height: inherit !important;
+}
+
+/** new media queries **/
+@media screen and (max-width: 575px) {
+  /* card text and titles */
+  .card-text {
+    font-size: 20px!important;
+  }
+  h5 {
+    font-size: 22px!important;
+  }
+  /* smiles section */
+  .description h3 {
+    font-size: 30px!important;
+  }
+  .description p {
+    font-size: 22px!important;
+    line-height: 1.5!important;
+  }
+  h2 {
+    font-size: 40px!important;
+  }
+}
+
+/** play buttons **/
+.card-img-overlay img {
+  margin: auto!important;
+}
+
+/* look below here to see a failed media query*/
+@media screen and (min-width: 768) {
+  /* card text and titles */
+  .card-title .font-weight-bold h5 {
+    color: red!important;
+    font-size: 2rem;
+  }
 }

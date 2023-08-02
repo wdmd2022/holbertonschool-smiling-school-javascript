@@ -46,7 +46,7 @@ function fetchQuotesMakeSlides() {
     })
 };
 
-async function getVids(apiURL) {
+async function getVids(apiURL, domID) {
     const response = await fetch(apiURL);
     // this makes it wait until promise is returned before continuing
     if (!response.ok) {
@@ -55,17 +55,69 @@ async function getVids(apiURL) {
     // since fetch doesn't return an error on 404 etc, we check using 'ok'
     const gimmeJSON = await response.json();
     // now we have a JSON object which is an array of the movies
+    const loaderToClose = '#' + domID + 'Loader';
+    $(loaderToClose).hide();
     gimmeJSON.forEach(item => {
         console.log(item.title)
-        makeVidCards(item);
+        const newCard = makeVidCards(item);
+        $(`#${domID}`).append(newCard);
+        
+    });
+    const classToSlickInitialize = '.' + domID;
+    $(classToSlickInitialize).slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: false,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ]
     });
 }
 
 function makeVidCards(item) {
-    
+    let starBright = item.star;
+    let starDark = 5 - starBright;
+    let starBlock = '';
+    for (let i = 0; i < starBright; i++) {
+        starBlock += `<img src="images/star_on.png" alt="star on" width="15px" />`
+    }
+    for (let j = 0; j < starDark; j++) {
+        starBlock += `<img src="images/star_off.png" alt="star off" width="15px" />`
+    }
+    let vidCard = $('<div>').addClass('card mx-md-3 border shadow');
+    vidCard.append(`<img src="${item.thumb_url}" class="card-img-top" alt="Video thumbnail" />
+    <div class="card-img-overlay text-center">
+      <img src="images/play.png" alt="Play" width="64px" class="align-self-center play-overlay" />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title font-weight-bold text-truncate">${item.title}</h5>
+      <p class="card-text text-muted">${item["sub-title"]}</p>
+      <div class="creator d-flex align-items-center">
+        <img src="${item.author_pic_url}" alt="Creator of Video" width="30px" class="rounded-circle" />
+        <h6 class="pl-3 m-0 main-color text-nowrap">${item.author}</h6>
+      </div>
+      <div class="info pt-3 d-flex justify-content-between">
+        <div class="rating text-nowrap small">
+          ${starBlock}
+        </div>
+        <span class="main-color text-nowrap small">${item.duration}</span>
+      </div>
+    </div>`);
+    return vidCard;
 }
 
 $(document).ready(function () {
     fetchQuotesMakeSlides();
-    getVids('https://smileschool-api.hbtn.info/popular-tutorials');
+    getVids('https://smileschool-api.hbtn.info/popular-tutorials', 'popVids');
 });
