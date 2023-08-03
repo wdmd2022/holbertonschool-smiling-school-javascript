@@ -72,7 +72,7 @@ async function getVids(apiURL, domID) {
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2
+                slidesToShow: 2
                 }
             },
             {
@@ -117,7 +117,12 @@ function makeVidCards(item) {
     return vidCard;
 }
 
+
 $(document).ready(function () {
     fetchQuotesMakeSlides();
     getVids('https://smileschool-api.hbtn.info/popular-tutorials', 'popVids');
+    getVids('https://smileschool-api.hbtn.info/latest-videos', 'latestVids');
+    
 });
+
+
